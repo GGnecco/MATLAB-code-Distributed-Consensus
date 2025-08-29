@@ -39,8 +39,8 @@ end
 
 figure(1)
 G=digraph(W_full','omitselfloops');
-%g=plot(G,'Layout','subspace')
-g=plot(G,'NodeFontSize',14)
+%g=plot(G,'Layout','subspace','Linewidth',1)
+g=plot(G,'NodeFontSize',14,'Linewidth',1)
 
 g.XData = [1 2 3 1 2 3 1 2 3];
 g.YData = [-1 -1 -1 0 0 0 1 1 1];
@@ -61,6 +61,7 @@ highlight(g,2,5,'EdgeColor','red')
 
 set(gcf, 'Position', get(0, 'Screensize'));
 %saveas(gcf,'figure1.pdf');
+%print('figure1','-dpdf','-bestfit');
 
 %there exists an arborescence, with node 1 as root
 
@@ -141,7 +142,7 @@ legend_string=[];
 for i=0:N_nodes
     y_1_2(i+1,:)=-optimal_value(i+1)+c_vector.*i;
     y_3(i+1,:)=-optimal_value(i+1)+c_vector*(i>0);
-    plot(c_vector,y_1_2(i+1,:),'color',cc(i+1,:));
+    plot(c_vector,y_1_2(i+1,:),'color',cc(i+1,:),'Linewidth',1);
     %legend_string=strvcat(legend_string,sprintf('no. active nodes=%.1d',i));
     legend_string=strvcat(legend_string,sprintf('$n_\\textrm{active}$=%.1d',i));
 end
@@ -160,8 +161,11 @@ ylabel('minimum of $c_\textrm{global}$','interpreter','latex','FontSize',16)
 
 %title('penalty values of optimal configurations for given numbers of active nodes','interpreter','latex')
 
+grid on
+
 set(gcf, 'Position', get(0, 'Screensize'));
 %saveas(gcf,'figure2.pdf');
+%print('figure2','-dpdf','-bestfit');
 
 %%% Nash
 
@@ -372,10 +376,10 @@ end
 
 hold on
 
-plot(p_test,fitted_polynomial,'b');
+plot(p_test,fitted_polynomial,'b','Linewidth',1);
 
 c=0.5;
-plot(p_test,c*ones(size(p_test)),'r');
+plot(p_test,c*ones(size(p_test)),'r','Linewidth',1);
 
 %legend('marginal expected utility of activation','marginal cost of activation','FontSize',14,'interpreter','latex');
 legend(['expected utility of one-node activation' newline 'for zero unit activation cost ($\beta(p)-\alpha(p)$)'],'unit activation cost ($k$)','FontSize',14,'Location','South','interpreter','latex');
@@ -385,8 +389,11 @@ ylabel('$\beta-\alpha$, $k$','interpreter','latex','FontSize',16)
 
 %title('symmetric mixed strategy Nash equilibria for a given unit activation cost $k$','interpreter','latex')
 
+grid on
+
 set(gcf, 'Position', get(0, 'Screensize'));
 %saveas(gcf,'figure3.pdf');
+%print('figure3','-dpdf','-bestfit');
 
 %%% optimal symmetric mixed strategy
 
@@ -437,14 +444,14 @@ end
 
 hold on
 
-plot(p_test,-fitted_polynomial_2,'b');
+plot(p_test,-fitted_polynomial_2,'b','Linewidth',1);
 
 c=4;
 total_cost_test=c*p_test*N_nodes;
 
-plot(p_test,total_cost_test,'r');
+plot(p_test,total_cost_test,'r','Linewidth',1);
 
-plot(p_test,total_cost_test-fitted_polynomial_2,'g');
+plot(p_test,total_cost_test-fitted_polynomial_2,'g','Linewidth',1);
 
 legend('expected global cost for zero unit activation cost $\delta(p)$','expected total cost of activation $k n p$','sum $\delta(p) + k n p$','Location','Northeast','FontSize',14,'interpreter','latex');
 
@@ -455,8 +462,11 @@ ylabel('$\delta$, $k n p$, $\delta+k n p$','interpreter','latex','FontSize',16)
 
 %title('optimal symmetric mixed strategies for a given unit cost of activation','interpreter','latex')
 
+grid on
+
 set(gcf, 'Position', get(0, 'Screensize'));
 %saveas(gcf,'figure4.pdf');
+%print('figure4','-dpdf','-bestfit');
 
 %%% symmetric Nash equilibria obtained by varying c
 
@@ -597,8 +607,11 @@ ylabel('(expected) $c_\textrm{convergence}$','interpreter','latex','FontSize',16
 
 %title('comparison of penalty values of strategies (case of penalty 1)','interpreter','latex')
 
+grid on
+
 set(gcf, 'Position', get(0, 'Screensize'));
 %saveas(gcf,'figure5.pdf');
+%print('figure5','-dpdf','-bestfit');
 
 %%% objective 2
 
@@ -635,8 +648,11 @@ ylabel('(expected) $c_\textrm{global}$','interpreter','latex','FontSize',16)
 
 %title('comparison of penalty values of strategies (case of penalty 2)','interpreter','latex')
 
+grid on
+
 set(gcf, 'Position', get(0, 'Screensize'));
 %saveas(gcf,'figure6.pdf');
+%print('figure6','-dpdf','-bestfit');
 
 %%% objective 3
 
@@ -673,5 +689,8 @@ ylabel('(expected) $c_\textrm{individual,max}$','interpreter','latex','FontSize'
 
 %title('comparison of penalty values of strategies (case of penalty 3)','interpreter','latex')
 
+grid on
+
 set(gcf, 'Position', get(0, 'Screensize'));
 %saveas(gcf,'figure7.pdf');
+%print('figure7','-dpdf','-bestfit');
